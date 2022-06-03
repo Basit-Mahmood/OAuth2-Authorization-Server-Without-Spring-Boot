@@ -3,6 +3,7 @@ This is the spring authorization server with plain spring i.e., without spring b
 messages.base-uri = http://127.0.0.1:9090/OAuth2AuthorizationServerSpring/rest/messages
 
 oauth2.authorization.uri = http://127.0.0.1:9090/OAuth2AuthorizationServerSpring/oauth2/authorize 
+
 oauth2.token.uri = http://127.0.0.1:9090/OAuth2AuthorizationServerSpring/oauth2/token
 
 http://127.0.0.1:9090/OAuth2AuthorizationServerSpring is {protocol}://{host}:{port}/{contextpath}.
@@ -14,8 +15,11 @@ Change your port and context path accordingy after importing this project into e
 For h2 console the url is the following. No password is needed.
 
 http://127.0.0.1:9090/OAuth2AuthorizationServerSpring/h2-console
+
 url     : jdbc:h2:mem:testdb
+
 username: sa
+
 The server port and context path is change in Spring boot client project. Also note that for rest controller your url should contain rest like /rest/mesages.
 
 This is because I configure the rest servlet to invoke for urls that starts with rest.
