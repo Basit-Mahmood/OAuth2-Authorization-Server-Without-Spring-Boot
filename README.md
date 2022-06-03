@@ -5,11 +5,24 @@ messages.base-uri = http://127.0.0.1:9090/OAuth2AuthorizationServerSpring/rest/m
 oauth2.authorization.uri = http://127.0.0.1:9090/OAuth2AuthorizationServerSpring/oauth2/authorize
 oauth2.token.uri = http://127.0.0.1:9090/OAuth2AuthorizationServerSpring/oauth2/token
 
-The server port and context path is change in Spring boot client project. Also note that for rest controller your url should contain rest like rest/mesages.
+
+http://127.0.0.1:9090/OAuth2AuthorizationServerSpring  is {protocol}://{host}:{port}/{contextpath}. 
+
+You can import this project in eclipse. It's a maven project as appose to Spring Boot. Spring Boot is using gradle.
+
+Change your port and context path accordingy after importing this project into eclipse. I test it with tomcat 9.
+
+For h2 console the url is the following. No password is needed.
+
+    http://127.0.0.1:9090/OAuth2AuthorizationServerSpring/h2-console
+    url     : jdbc:h2:mem:testdb
+    username: sa
+
+The server port and context path is change in Spring boot client project. Also note that for rest controller your url should contain rest like /rest/mesages.
 
 This is because I configure the rest servlet to invoke for urls that starts with rest.
 
-Both Authorization and Resource server are in the same project. This project is just for demonstration. If someone want to configure it with plain spring. Sometimes there are cases that we can not use Spring boot. I just recently had this case. So I think it would be useful for others too. 
+Both Authorization and Resource server are in the same project. This project is just for demonstration. If someone wants to configure it with plain spring. Sometimes there are cases that we can not use Spring boot. I just recently had this case. So I think it would be useful for others too. 
 
 Right now it is using authorization server 0.2.3 and Java 8. 
 
