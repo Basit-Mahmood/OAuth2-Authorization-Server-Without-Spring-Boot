@@ -1,4 +1,4 @@
-This is the spring outhorization server with plan spring i.e., without spring boot. The code base is same. Means the configurations use in Spring boot are using here. You can test it with the spring boot client. You just need to change the spring boot client urls in the properties file. Like the following
+This is the spring outhorization server with plain spring i.e., without spring boot. The code base is same. Means the configurations use in Spring boot are using here. You can test it with the spring boot client. You just need to change the spring boot client urls in the properties file. Like the following
 
 messages.base-uri = http://127.0.0.1:9090/OAuth2AuthorizationServerSpring/rest/messages
 
