@@ -1,0 +1,753 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>pk.training.basit</groupId>
+	<artifactId>OAuth2AuthorizationServerSpring</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
+
+	<name>OAuth2AuthorizationServerSpring Maven Webapp</name>
+	<!-- FIXME change it to the project's website -->
+	<url>http://www.example.com</url>
+
+	<properties>
+  	
+  		<!-- Generic properties -->
+		<java.version>1.8</java.version>
+		
+		<!-- Java -->
+		<javax.inject.version>1</javax.inject.version>
+		<javax.transaction-api.version>1.3</javax.transaction-api.version>
+		<javax.validation-api.version>2.0.1.Final</javax.validation-api.version>
+		
+		<!-- Web -->
+		<javax.servlet-api.version>3.1.0</javax.servlet-api.version>
+		
+		<!-- Expression Language -->
+		<javax.el-api.version>3.0.0</javax.el-api.version>
+		
+		<!-- JSP -->
+		<javax.servlet.jsp-api.version>2.3.3</javax.servlet.jsp-api.version>
+		<javax.servlet.jsp.jstl.version>1.2.5</javax.servlet.jsp.jstl.version>
+		<javax.servlet.jsp.jstl-api.version>1.2.2</javax.servlet.jsp.jstl-api.version>
+		
+		<jackson.version>2.13.3</jackson.version>
+		<webjars.version>0.45</webjars.version>
+		<bootstrap.version>5.1.3</bootstrap.version>
+		<jquery.version>3.6.0</jquery.version>
+		
+		<!-- Spring -->
+		<spring-framework.version>5.3.20</spring-framework.version>
+		<spring.security.version>5.7.1</spring.security.version>
+		
+		<!-- JPA -->
+		<spring-data-jpa.version>2.7.0</spring-data-jpa.version>
+		<javax.persistence.version>2.2.1</javax.persistence.version>
+		<hibernate-core.version>5.6.9.Final</hibernate-core.version>
+		<hibernate-validator.version>6.2.3.Final</hibernate-validator.version>
+		<javassist.version>3.20.0-GA</javassist.version>
+		
+		<!-- Drivers -->
+		<h2.version>2.1.212</h2.version>
+		
+		<!-- Logging -->
+        <log4j.version>2.17.2</log4j.version>
+  	    <jboss-logging.version>3.4.3.Final</jboss-logging.version>
+  	    
+  	    <!-- Unit testing -->
+	    <junit.version>4.12</junit.version>
+	    <junit-jupiter-engine.version>5.8.2</junit-jupiter-engine.version>
+        <junit-platform-runner.version>1.8.2</junit-platform-runner.version>
+        
+        <!-- maven plugins -->	     
+  	    <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+		<maven-enforcer-plugin.version>1.4.1</maven-enforcer-plugin.version>
+		<maven-resources-plugin.version>3.2.0</maven-resources-plugin.version>
+	    <maven-war-plugin.version>3.3.2</maven-war-plugin.version>
+	    <maven-javadoc-plugin.version>3.1.1</maven-javadoc-plugin.version>
+  	
+  	</properties>
+
+	<dependencies>
+	
+		<!-- junit artifact now moved to org.junit.jupiter >> junit-jupiter-api  -->
+		<dependency>
+    		<groupId>org.junit.jupiter</groupId>
+    		<artifactId>junit-jupiter-api</artifactId>
+    		<version>${junit-jupiter-engine.version}</version>
+    		<scope>test</scope>
+		</dependency>
+		
+		<!-- JUnit Jupiter test engine implementation, only required at runtime. -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>${junit-jupiter-engine.version}</version>
+            <scope>test</scope>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-runner</artifactId>
+            <version>${junit-platform-runner.version}</version>
+            <scope>test</scope>
+        </dependency>
+        
+        <dependency>
+    		<groupId>org.mockito</groupId>
+    		<artifactId>mockito-junit-jupiter</artifactId>
+    		<version>4.5.1</version>
+    		<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+    		<groupId>com.jayway.jsonpath</groupId>
+    		<artifactId>json-path</artifactId>
+    		<version>2.7.0</version>
+    		<scope>test</scope>
+    		<exclusions>
+				<exclusion>
+					<groupId>net.minidev</groupId>
+					<artifactId>json-smart</artifactId>
+				</exclusion>
+    		</exclusions>
+		</dependency>
+		
+		<dependency>
+    		<groupId>org.skyscreamer</groupId>
+    		<artifactId>jsonassert</artifactId>
+    		<version>1.5.0</version>
+    		<scope>test</scope>
+		</dependency>
+      
+	    <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>${log4j.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        
+      	<dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>${log4j.version}</version>
+            <scope>runtime</scope>
+       	</dependency>
+       
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-jcl</artifactId>
+            <version>${log4j.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j-impl</artifactId>
+            <version>${log4j.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+         
+        <dependency>
+        	<groupId>org.apache.logging.log4j</groupId>
+        	<artifactId>log4j-jul</artifactId>
+        	<version>${log4j.version}</version>
+            <scope>runtime</scope>
+      	</dependency>
+	      	
+      	<dependency>
+    		<groupId>org.apache.logging.log4j</groupId>
+    		<artifactId>log4j-web</artifactId>
+    		<version>${log4j.version}</version>
+    		<scope>compile</scope>
+ 		</dependency>
+		
+		<dependency>
+			<groupId>org.jboss.logging</groupId>
+			<artifactId>jboss-logging</artifactId>
+			<version>${jboss-logging.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+		
+		<dependency>
+	     	<groupId>javax.inject</groupId>
+	        <artifactId>javax.inject</artifactId>
+	        <version>${javax.inject.version}</version>
+	        <scope>compile</scope>
+	    </dependency>
+		
+		<dependency>
+			<groupId>javax.transaction</groupId>
+			<artifactId>javax.transaction-api</artifactId>
+			<version>${javax.transaction-api.version}</version>
+		</dependency>
+		
+		<!-- The JSR-303 Bean Validation API library. -->
+       	<dependency>
+	   		<groupId>javax.validation</groupId>
+	    	<artifactId>validation-api</artifactId>
+	    	<version>${javax.validation-api.version}</version>
+	    	<scope>compile</scope>
+	    </dependency>
+		
+		<!-- Spring MVC -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${spring-framework.version}</version>
+		</dependency>
+		
+		<dependency>
+    		<groupId>org.springframework</groupId>
+    		<artifactId>spring-aspects</artifactId>
+    		<version>${spring-framework.version}</version>
+		</dependency>
+		
+		<dependency>
+    		<groupId>org.springframework</groupId>
+    		<artifactId>spring-oxm</artifactId>
+    		<version>${spring-framework.version}</version>
+    		<exclusions>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-beans</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-core</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		
+		<dependency>
+    		<groupId>org.springframework</groupId>
+    		<artifactId>spring-test</artifactId>
+    		<version>${spring-framework.version}</version>
+    		<scope>test</scope>
+    		<exclusions>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-core</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		
+		<dependency>
+    		<groupId>org.springframework.security</groupId>
+    		<artifactId>spring-security-web</artifactId>
+    		<version>${spring.security.version}</version>
+		</dependency>
+		
+		<dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+            <version>${spring.security.version}</version>
+        </dependency>
+        
+        <dependency>
+    		<groupId>org.springframework.security</groupId>
+    		<artifactId>spring-security-test</artifactId>
+    		<version>${spring.security.version}</version>
+    		<scope>test</scope>
+    		<exclusions>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-core</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-test</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework.security</groupId>
+					<artifactId>spring-security-core</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework.security</groupId>
+					<artifactId>spring-security-web</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		
+		<dependency>
+    		<groupId>org.springframework.security</groupId>
+    		<artifactId>spring-security-oauth2-resource-server</artifactId>
+    		<version>${spring.security.version}</version>
+    		<exclusions>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-core</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework.security</groupId>
+					<artifactId>spring-security-core</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework.security</groupId>
+					<artifactId>spring-security-web</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		
+		<dependency>
+    		<groupId>org.springframework.security</groupId>
+    		<artifactId>spring-security-oauth2-jose</artifactId>
+    		<version>${spring.security.version}</version>
+    		<exclusions>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-core</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework.security</groupId>
+					<artifactId>spring-security-core</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework.security</groupId>
+					<artifactId>spring-security-oauth2-core</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		
+		<dependency>
+    		<groupId>org.springframework.security</groupId>
+    		<artifactId>spring-security-oauth2-authorization-server</artifactId>
+    		<version>0.2.3</version>
+    		<exclusions>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-core</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework.security</groupId>
+					<artifactId>spring-security-config</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework.security</groupId>
+					<artifactId>spring-security-web</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework.security</groupId>
+					<artifactId>spring-security-oauth2-core</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework.security</groupId>
+					<artifactId>spring-security-oauth2-jose</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework.security</groupId>
+					<artifactId>spring-security-oauth2-resource-server</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.fasterxml.jackson.core</groupId>
+					<artifactId>jackson-databind</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.nimbusds</groupId>
+					<artifactId>nimbus-jose-jwt</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		
+		<dependency>
+    		<groupId>org.springframework.security</groupId>
+    		<artifactId>spring-security-oauth2-client</artifactId>
+    		<version>${spring.security.version}</version>
+    		<exclusions>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-core</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework.security</groupId>
+					<artifactId>spring-security-core</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework.security</groupId>
+					<artifactId>spring-security-oauth2-core</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework.security</groupId>
+					<artifactId>spring-security-web</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		
+		<!-- Javassist (JAVA programming ASSISTant) makes Java bytecode manipulation simple. It is a class library for editing 
+	            bytecodes in Java.  
+	    -->
+        <dependency>
+			<groupId>org.javassist</groupId>
+			<artifactId>javassist</artifactId>
+			<version>${javassist.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+		
+		<!-- Spring Data JPA -->
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-jpa</artifactId>
+			<version>${spring-data-jpa.version}</version>
+		</dependency>
+		
+		<dependency>
+            <groupId>org.eclipse.persistence</groupId>
+            <artifactId>javax.persistence</artifactId>
+            <version>${javax.persistence.version}</version>
+            <scope>compile</scope>
+        </dependency>
+           
+           <!-- Hibernate entity manager with JPA 2 support merge in hibernate-core from hibrnate 5.2 omwards.  -->
+           <dependency>
+   			<groupId>org.hibernate</groupId>
+   			<artifactId>hibernate-core</artifactId>
+   			<version>${hibernate-core.version}</version>
+   			<scope>compile</scope>
+              <exclusions>
+                <exclusion>
+                    <groupId>org.hibernate.javax.persistence</groupId>
+                    <artifactId>hibernate-jpa-2.1-api</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.jboss.spec.javax.transaction</groupId>
+                    <artifactId>jboss-transaction-api_1.2_spec</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>xml-apis</groupId>
+                    <artifactId>xml-apis</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.jboss.logging</groupId>
+                    <artifactId>jboss-logging</artifactId>
+                </exclusion>
+                 <exclusion>
+                    <groupId>org.javassist</groupId>
+                    <artifactId>javassist</artifactId>
+                </exclusion>
+            </exclusions> 
+		</dependency>
+		
+		<!-- Hibernate Validator excludes the transient JBoss Logging API dependency(Hibernate use this instead of Commons Logging as
+			    their logging API), and that a runtime JBoss Logging dependency is seperately declared. The hibernate-validator artifact
+			    declares a dependency on a jboss-logging version that doesn't support Log4j2, so it is necessary to declare a newer
+			    dependency that does. The exclusion isn't strictly necessary, but is shown for clarity.
+		-->
+		<dependency>
+			<groupId>org.hibernate.validator</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>${hibernate-validator.version}</version>
+			<scope>runtime</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>org.jboss.logging</groupId>
+					<artifactId>jboss-logging</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>javax.validation</groupId>
+					<artifactId>validation-api</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+	
+		<dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator-annotation-processor</artifactId>
+            <version>${hibernate-validator.version}</version>
+            <scope>compile</scope>
+            <optional>true</optional>
+        </dependency>
+		
+		<!-- Drivers -->
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<version>${h2.version}</version>
+		<!--	<scope>runtime</scope>  -->
+		</dependency>
+		
+		<dependency>
+    		<groupId>com.zaxxer</groupId>
+    		<artifactId>HikariCP</artifactId>
+    		<version>4.0.3</version>
+		</dependency>
+		
+		<!-- Java EE Web dependencies -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>${javax.servlet-api.version}</version>
+			<scope>provided</scope>
+		</dependency>
+        
+        <dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>javax.servlet.jsp-api</artifactId>
+			<version>${javax.servlet.jsp-api.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		
+		<dependency>
+            <groupId>javax.el</groupId>
+            <artifactId>javax.el-api</artifactId>
+            <version>${javax.el-api.version}</version>
+            <scope>provided</scope>
+        </dependency>
+	
+		<dependency>
+			<groupId>javax.servlet.jsp.jstl</groupId>
+			<artifactId>javax.servlet.jsp.jstl-api</artifactId>
+			<version>${javax.servlet.jsp.jstl-api.version}</version>
+			<scope>compile</scope>
+		</dependency>
+	
+		<!-- The exclusions are necessary because the JSTL implementation defines transient dependencies on older versions of the JSP
+		     and Servlet specifications that have different Maven artifact IDs than the current versions. 
+		-->
+		<dependency>
+			<groupId>org.glassfish.web</groupId>
+			<artifactId>javax.servlet.jsp.jstl</artifactId>
+			<version>${javax.servlet.jsp.jstl.version}</version>
+			<scope>compile</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>javax.servlet</groupId>
+					<artifactId>servlet-api</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>javax.servlet.jsp</groupId>
+					<artifactId>jsp-api</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>javax.servlet.jsp.jstl</groupId>
+					<artifactId>jstl-api</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		
+		<dependency>
+    		<groupId>org.thymeleaf</groupId>
+    		<artifactId>thymeleaf</artifactId>
+   		 	<version>3.0.15.RELEASE</version>
+		</dependency>
+		
+		<dependency>
+    		<groupId>org.thymeleaf.extras</groupId>
+    		<artifactId>thymeleaf-extras-java8time</artifactId>
+    		<version>3.0.4.RELEASE</version>
+    		<exclusions>
+				<exclusion>
+					<groupId>org.thymeleaf</groupId>
+					<artifactId>thymeleaf</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		
+		<dependency>
+    		<groupId>org.thymeleaf</groupId>
+    		<artifactId>thymeleaf-spring5</artifactId>
+    		<version>3.0.15.RELEASE</version>
+    		<exclusions>
+				<exclusion>
+					<groupId>org.thymeleaf</groupId>
+					<artifactId>thymeleaf</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		
+		<dependency>
+    		<groupId>org.thymeleaf.extras</groupId>
+    		<artifactId>thymeleaf-extras-springsecurity5</artifactId>
+    		<version>3.0.4.RELEASE</version>
+		</dependency>
+		
+		<dependency>
+    		<groupId>nz.net.ultraq.thymeleaf</groupId>
+    		<artifactId>thymeleaf-layout-dialect</artifactId>
+    		<version>3.1.0</version>
+		</dependency>
+		
+		<!-- Web UI:
+		     *******
+		     
+		     Why Use WebJars? This question has a very simple answer – because it's easy. Manually adding and managing client side dependencies often 
+		     results in difficult to maintain codebases. Also, most Java developers prefer to use Maven and Gradle as build and dependency management tools.
+		     The main problem WebJars solves is making client side dependencies available on Maven Central and usable in any standard Maven project.
+		     
+		     Here are a few interesting advantages of WebJars:
+		     
+		     * We can explicitly and easily manage the client-side dependencies in JVM-based web applications
+			 * We can use them with any commonly used build tool, eg: Maven, Gradle, etc
+			 * WebJars behave like any other Maven dependency – which means that we get transitive dependencies as well
+		
+			Now Twitter Bootstrap and jQuery are available on the project classpath; we can simply reference them and use them in our application.
+			
+			With these two WebJar dependencies defined, let's now set up a simple Spring MVC project to be able to use the client-side dependencies.
+			Before we get to that however, it's important to understand that WebJars have nothing to do with Spring, and we're only using Spring here 
+			because it's a very quick and simple way to set up an MVC project.
+			
+			Version-Agnostic Dependencies:
+			*******************************'
+			
+			When using Spring Framework version 4.2 or higher, it will automatically detect the webjars-locator library on the classpath and use it to 
+			automatically resolve the version of any WebJars assets.
+			
+			In order to enable this feature, we'll add the webjars-locator library as a dependency of the application:
+		-->
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>webjars-locator</artifactId>
+			<version>${webjars.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>bootstrap</artifactId>
+			<version>${bootstrap.version}</version>
+		</dependency>
+		<dependency>
+    		<groupId>org.webjars</groupId>
+    		<artifactId>jquery</artifactId>
+    		<version>${jquery.version}</version>
+		</dependency>
+		
+		<!-- Web - JSON/XML Response
+			Inspired by the quality and variety of XML tooling available for the Java platform (StAX, JAXB, etc.),
+		    the Jackson is a multi-purpose Java library for processing JSON data format. Jackson aims to be the 
+		    best possible combination of fast, correct, lightweight, and ergonomic.
+		     
+		    jackson-core is part of Jackson that defines Streaming API as well as basic shared abstractions  
+	    -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>${jackson.version}</version>
+			<scope>compile</scope>
+		</dependency>
+	
+		<!-- General data-binding package for Jackson (2.x): works on streaming API (core) implementation(s) -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${jackson.version}</version>
+			<scope>compile</scope>
+		</dependency>
+		
+		<dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>${jackson.version}</version>
+            <scope>compile</scope>
+        </dependency>
+		
+		<!-- Add-on module to support JSR-310 (Java 8 Date & Time API) data types -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.datatype</groupId>
+			<artifactId>jackson-datatype-jsr310</artifactId>
+			<version>${jackson.version}</version>
+			<scope>compile</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.fasterxml.jackson.datatype</groupId>
+			<artifactId>jackson-datatype-hibernate5</artifactId>
+			<version>${jackson.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>javax.transaction</groupId>
+					<artifactId>jta</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.fasterxml.jackson.dataformat</groupId>
+			<artifactId>jackson-dataformat-xml</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+		
+	</dependencies>
+
+	<build>
+		<finalName>OAuth2AuthorizationServerSpring</finalName>
+		<pluginManagement>
+			<!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
+			<plugins>
+			
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>${maven-compiler-plugin.version}</version>
+					<configuration>
+						<source>${java.version}</source>
+						<target>${java.version}</target>
+						<compilerArgument>-Xlint:all</compilerArgument>
+						<showWarnings>true</showWarnings>
+						<showDeprecation>true</showDeprecation>
+					</configuration>
+				</plugin>
+				
+				<plugin>
+	       			<groupId>org.apache.maven.plugins</groupId>
+	       			<artifactId>maven-enforcer-plugin</artifactId>
+	       			<version>${maven-enforcer-plugin.version}</version>
+	       			<executions>
+	         				<execution>
+	           				<id>enforce-versions</id>
+	           				<goals>
+	             					<goal>enforce</goal>
+	           				</goals>
+	           				<configuration>
+	             					<rules>
+	               					<requireJavaVersion>
+	                 						<version>${java.version}</version>
+	               					</requireJavaVersion>
+	             					</rules>
+	           				</configuration>
+	         				</execution>
+	       			</executions>
+	     		</plugin>
+	     		
+	     		<!-- see http://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_war_packaging -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-resources-plugin</artifactId>
+					<version>${maven-resources-plugin.version}</version>
+				</plugin>
+				
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-war-plugin</artifactId>
+					<version>${maven-war-plugin.version}</version>
+					<configuration>
+	            	    <failOnMissingWebXml>false</failOnMissingWebXml>
+	             		<warName>${project.artifactId}</warName>
+	             		<outputDirectory>${basedir}/target/</outputDirectory>
+	            	</configuration>
+				</plugin>
+			
+				<plugin>
+					<artifactId>maven-clean-plugin</artifactId>
+					<version>3.1.0</version>
+				</plugin>
+				
+				
+				<plugin>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>2.22.1</version>
+				</plugin>
+				
+				<plugin>
+					<artifactId>maven-install-plugin</artifactId>
+					<version>2.5.2</version>
+				</plugin>
+				<plugin>
+					<artifactId>maven-deploy-plugin</artifactId>
+					<version>2.8.2</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+</project>
