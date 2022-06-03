@@ -2,7 +2,8 @@ This is the spring authorization server with plain spring i.e., without spring b
 
 messages.base-uri = http://127.0.0.1:9090/OAuth2AuthorizationServerSpring/rest/messages
 
-oauth2.authorization.uri = http://127.0.0.1:9090/OAuth2AuthorizationServerSpring/oauth2/authorize oauth2.token.uri = http://127.0.0.1:9090/OAuth2AuthorizationServerSpring/oauth2/token
+oauth2.authorization.uri = http://127.0.0.1:9090/OAuth2AuthorizationServerSpring/oauth2/authorize 
+oauth2.token.uri = http://127.0.0.1:9090/OAuth2AuthorizationServerSpring/oauth2/token
 
 http://127.0.0.1:9090/OAuth2AuthorizationServerSpring is {protocol}://{host}:{port}/{contextpath}.
 
