@@ -1,4 +1,8 @@
-This is the spring authorization server with plain spring i.e., without spring boot. The code base is same. Means the configurations use in Spring boot are using here. You can test it with the spring boot client. You just need to change the spring boot client urls in the properties file. Like the following
+This is the spring authorization server with plain spring i.e., without spring boot. The code base is same. Means the configurations use in Spring boot are using here.
+
+You can check my repository spring-authorization-server-password-grant-type-support. The functionality is same. In this project configuration is done using plain spring.
+
+You can test it with the spring boot client. You just need to change the spring boot client urls in the properties file. Like the following
 
 messages.base-uri = http://127.0.0.1:9090/OAuth2AuthorizationServerSpring/rest/messages
 
@@ -23,6 +27,12 @@ username: sa
 The server port and context path is change in Spring boot client project. Also note that for rest controller your url should contain rest like /rest/mesages.
 
 This is because I configure the rest servlet to invoke for urls that starts with rest.
+
+        DispatcherServlet servlet = new DispatcherServlet(restContext);
+        servlet.setDispatchOptionsRequest(true);
+        dispatcher = container.addServlet("springRestDispatcher", servlet);
+        dispatcher.setLoadOnStartup(2);
+        dispatcher.addMapping("/rest/*");
 
 Both Authorization and Resource server are in the same project. This project is just for demonstration. If someone wants to configure it with plain spring. Sometimes there are cases that we can not use Spring boot. I just recently had this case. So I think it would be useful for others too.
 
