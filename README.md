@@ -26,7 +26,7 @@ username: sa
 
 The server port and context path is change in Spring boot client project. Also note that for rest controller your url should contain rest like /rest/mesages.
 
-This is because I configure the rest servlet to invoke for urls that starts with rest.
+This is because I configure the rest servlet to invoke for urls that starts with rest in FrameworkBootstrap.java.  This class is the starting point of the application. This project also contains web.xml but it contains minimum stuff. You can think of FrameworkBootstrap.java as java version of web.xml.
 
         DispatcherServlet servlet = new DispatcherServlet(restContext);
         servlet.setDispatchOptionsRequest(true);
